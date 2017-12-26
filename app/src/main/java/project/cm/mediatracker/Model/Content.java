@@ -4,7 +4,7 @@ package project.cm.mediatracker.Model;
  * Created by pedrog on 26-12-2017.
  */
 
-public class Content {
+public abstract class Content {
 
     private Integer codContent;
     private String title;
