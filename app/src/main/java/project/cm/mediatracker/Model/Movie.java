@@ -9,12 +9,14 @@ public class Movie extends Content {
     private String releasedDate;
     private String director;
     private String actors;
+    private Integer rating;
 
-    public Movie(Integer codContent, String title, Integer year, Integer runtime, String genre, String writer, String plot, String poster, String releasedDate, String director, String actors) {
+    public Movie(Integer codContent, String title, Integer year, Integer runtime, String genre, String writer, String plot, String poster, String releasedDate, String director, String actors, Integer rating) {
         super(codContent, title, year, runtime, genre, writer, plot, poster);
         this.releasedDate = releasedDate;
         this.director = director;
         this.actors = actors;
+        this.rating = rating;
     }
 
     public String getReleasedDate() {
@@ -39,6 +41,14 @@ public class Movie extends Content {
 
     public void setActors(String actors) {
         this.actors = actors;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     @Override

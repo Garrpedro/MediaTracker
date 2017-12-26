@@ -10,12 +10,14 @@ public class Episode {
     private Integer episode;
     private String title;
     private String released;
+    private Integer rating;
 
-    public Episode(Integer season, Integer episode, String title, String released) {
+    public Episode(Integer season, Integer episode, String title, String released, Integer rating) {
         this.season = season;
         this.episode = episode;
         this.title = title;
         this.released = released;
+        this.rating = rating;
     }
 
     public Integer getSeason() {
@@ -48,6 +50,14 @@ public class Episode {
 
     public void setReleased(String released) {
         this.released = released;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     @Override
