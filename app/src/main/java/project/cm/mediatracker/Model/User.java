@@ -11,14 +11,14 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private Date birthDate;
+    private Boolean active;
 
 
     public User(String email, String username, String password, Date birthDate) {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.birthDate = birthDate;
+        this.active = true;
     }
 
     public String getEmail() {
@@ -45,12 +45,12 @@ public class User {
         this.password = password;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @Override
@@ -59,7 +59,6 @@ public class User {
                 "email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", birthDate=" + birthDate +
                 '}';
     }
 }
