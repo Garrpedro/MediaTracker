@@ -1,6 +1,7 @@
 package project.cm.mediatracker.Model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by pedrog on 26-12-2017.
@@ -12,13 +13,14 @@ public class User {
     private String username;
     private String password;
     private Boolean active;
+    private List<Lista> listas;
 
-
-    public User(String email, String username, String password, Date birthDate) {
+    public User(String email, String username, String password, Boolean active, List<Lista> listas) {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.active = true;
+        this.active = active;
+        this.listas = listas;
     }
 
     public String getEmail() {
@@ -51,6 +53,14 @@ public class User {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public List<Lista> getListas() {
+        return listas;
+    }
+
+    public void setListas(List<Lista> listas) {
+        this.listas = listas;
     }
 
     @Override
