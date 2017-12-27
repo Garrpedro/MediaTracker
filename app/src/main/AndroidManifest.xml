@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".ListMediaActivity" />
+        <activity android:name=".SearchMediaActivity"></activity>
     </application>
 
 </manifest>
