@@ -25,7 +25,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".ListMediaActivity" />
-        <activity android:name=".SearchMediaActivity"></activity>
+        <activity android:name=".SearchMediaActivity" />
+        <activity android:name=".PerfilActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".MovieActivity" />
+        <activity android:name=".SerieAnimeActivity"></activity>
     </application>
 
 </manifest>
