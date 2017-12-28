@@ -16,7 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity
@@ -29,7 +28,8 @@
         <activity android:name=".PerfilActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".MovieActivity" />
-        <activity android:name=".SerieAnimeActivity"></activity>
+        <activity android:name=".SerieAnimeActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>
