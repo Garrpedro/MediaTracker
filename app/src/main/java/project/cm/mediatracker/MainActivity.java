@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                final Intent mainIntent = new Intent(MainActivity.this, LoginActivity.class);
+                final Intent mainIntent = new Intent(MainActivity.this, HomeActivity.class);
                 MainActivity.this.startActivity(mainIntent);
                 MainActivity.this.finish();
             }
