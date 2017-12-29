@@ -72,22 +72,29 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_password" />
 
     <Button
-        android:id="@+id/buttonCreate_acc"
+        android:id="@+id/btn_create_acc"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="create an accont"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="113dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_forgot_pass" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_forgot_pass"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="Forgot Password?"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
-        tools:layout_editor_absoluteX="111dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
 </android.support.constraint.ConstraintLayout>

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1056533548670-1bhalff322se82ifbdqmiqvme7k243ln.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "project.cm.mediatracker",
+            "certificate_hash": "f0e318911e18495559a614c68d1c3a67897ace98"
+          }
+        },
+        {
           "client_id": "1056533548670-nt855r2nu4bvahs5gngr67p3mojhuijn.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056533548670-nt855r2nu4bvahs5gngr67p3mojhuijn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
