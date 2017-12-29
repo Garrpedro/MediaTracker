@@ -6,12 +6,17 @@
     android:layout_height="match_parent"
     tools:context="project.cm.mediatracker.HomeActivity">
 
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar" />
+
+
     <Button
         android:id="@+id/buttonMovies"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="56dp"
         android:background="#854D27"
         android:text="Movies"
         app:layout_constraintEnd_toEndOf="parent"
