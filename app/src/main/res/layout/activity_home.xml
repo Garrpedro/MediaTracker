@@ -12,7 +12,7 @@
 
 
     <Button
-        android:id="@+id/buttonMovies"
+        android:id="@+id/btMovies"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="200dp"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonSeries"
+        android:id="@+id/btSeries"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="200dp"
@@ -34,10 +34,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMovies" />
+        app:layout_constraintTop_toBottomOf="@+id/btMovies" />
 
     <Button
-        android:id="@+id/buttonAnimes"
+        android:id="@+id/btAnimes"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="200dp"
@@ -46,5 +46,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSeries" />
+        app:layout_constraintTop_toBottomOf="@+id/btSeries" />
 </android.support.constraint.ConstraintLayout>
