@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1056533548670-5n746ag2074oetou0vb6j5ppm2jbuhfi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "project.cm.mediatracker",
+            "certificate_hash": "b368b0db96ad8b42bd71fe1028af36f86d3e6df5"
+          }
+        },
+        {
           "client_id": "1056533548670-1bhalff322se82ifbdqmiqvme7k243ln.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

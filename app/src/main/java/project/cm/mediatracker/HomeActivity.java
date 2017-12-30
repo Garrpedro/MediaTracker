@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class HomeActivity extends Activity implements AppCompatCallback {
     public static final String USERNAME = "username";
     public static final String MEDIA_TYPE = "tipo_media";
@@ -25,6 +28,7 @@ public class HomeActivity extends Activity implements AppCompatCallback {
     Button btSeries;
     Button btAnimes;
     private AppCompatDelegate delegate;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +96,10 @@ public class HomeActivity extends Activity implements AppCompatCallback {
                 startActivity(intent);
             }
         });
-
+        // MobileAds.initialize(this, "ca-app-pub-1606976219790764~6546896597");
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
     }
 
