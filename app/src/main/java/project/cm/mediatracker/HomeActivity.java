@@ -17,8 +17,10 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends Activity implements AppCompatCallback {
+
     public static final String USERNAME = "username";
     public static final String MEDIA_TYPE = "tipo_media";
     ImageButton perfilToolbar;
@@ -30,9 +32,22 @@ public class HomeActivity extends Activity implements AppCompatCallback {
     private AppCompatDelegate delegate;
     private AdView mAdView;
 
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+        //check if user is logged
+        if(mAuth.getCurrentUser() == null){
+            finish();
+            Intent intent=new Intent(HomeActivity.this,LoginActivity.class);
+            startActivity(intent);
+        }
+
 
 
         user = getIntent().getStringExtra(LoginActivity.USERNAME);

@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_create_acc;
     Button btn_forgot_pass;
 
+
     private FirebaseAuth mAuth;
 
     @Override
@@ -40,6 +41,9 @@ public class LoginActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         btn_create_acc= findViewById(R.id.btn_create_acc);
         btn_forgot_pass = findViewById(R.id.btn_forgot_pass);
+
+        mAuth = FirebaseAuth.getInstance();
+
 
 
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
+
     }
 
 
@@ -86,4 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+
+
 }

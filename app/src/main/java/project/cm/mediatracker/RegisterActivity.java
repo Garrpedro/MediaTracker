@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -82,5 +83,22 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void userProfile(){
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null){
+            UserProfileChangeRequest profileUpadets  = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(text_register_nome.getText().toString().trim()).build();
+
+            user.updateProfile(profileUpadets).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Log.d("test", "profile update");
+                    }
+                }
+            });
+        }
     }
 }
