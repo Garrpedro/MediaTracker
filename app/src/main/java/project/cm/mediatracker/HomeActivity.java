@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends Activity implements AppCompatCallback {
@@ -111,7 +112,8 @@ public class HomeActivity extends Activity implements AppCompatCallback {
                 startActivity(intent);
             }
         });
-        // MobileAds.initialize(this, "ca-app-pub-1606976219790764~6546896597");
+        MobileAds.initialize(this, "ca-app-pub-1606976219790764~6546896597");
+
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
