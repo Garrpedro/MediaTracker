@@ -115,7 +115,7 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         MobileAds.initialize(this, "ca-app-pub-1606976219790764~6546896597");
 
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("37BAB9ED353B0FE2F570729017F8CBD7").build();
         mAdView.loadAd(adRequest);
 
     }
