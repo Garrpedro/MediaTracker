@@ -14,8 +14,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -39,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         text_register_nome = findViewById(R.id.text_register_nome);
         text_register_email = findViewById(R.id.text_register_email);
         text_register_pass = findViewById(R.id.text_register_pass);
-        text_register_rpt_pass = findViewById(R.id.text_register_rpt_pass);
+        text_register_rpt_pass = findViewById(R.id.text_register_pass);
         btn_register = findViewById(R.id.btn_register);
 
 
@@ -67,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
                             Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
                             startActivity(intent);
@@ -85,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void userProfile(){
+    /*private void userProfile(){
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
             UserProfileChangeRequest profileUpadets  = new UserProfileChangeRequest.Builder()
@@ -100,5 +98,5 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
-    }
+    }*/
 }

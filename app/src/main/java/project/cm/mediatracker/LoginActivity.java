@@ -45,6 +45,13 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
+        //check if user is logged
+        if(mAuth.getCurrentUser() != null){
+            finish();
+            Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+            startActivity(intent);
+        }
+
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
