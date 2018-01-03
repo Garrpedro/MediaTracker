@@ -74,7 +74,7 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         perfilToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                 intent.putExtra(USERNAME, user);
                 startActivity(intent);
             }
@@ -142,7 +142,7 @@ public class HomeActivity extends Activity implements AppCompatCallback {
 
                 break;
             case R.id.action_user:
-                intent = new Intent(HomeActivity.this, PerfilActivity.class);
+                intent = new Intent(HomeActivity.this, ProfileActivity.class);
                 intent.putExtra(USERNAME, user);
                 startActivity(intent);
                 break;

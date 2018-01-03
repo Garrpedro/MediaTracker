@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class PerfilActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
@@ -20,7 +20,7 @@ public class PerfilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.activity_profile);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -30,7 +30,7 @@ public class PerfilActivity extends AppCompatActivity {
         //check if user is logged
         if(mAuth.getCurrentUser() == null){
             finish();
-            Intent intent=new Intent(PerfilActivity.this,LoginActivity.class);
+            Intent intent=new Intent(ProfileActivity.this,LoginActivity.class);
             startActivity(intent);
         }
 
@@ -46,7 +46,7 @@ public class PerfilActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mAuth.signOut();
                 finish();
-                Intent intent=new Intent(PerfilActivity.this,LoginActivity.class);
+                Intent intent=new Intent(ProfileActivity.this,LoginActivity.class);
                 startActivity(intent);
             }
         });

@@ -28,7 +28,7 @@
         <activity android:name=".MenuActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".ListMediaActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".SearchMediaActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".PerfilActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ProfileActivity" android:screenOrientation="portrait" />
         <activity android:name=".SettingsActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".MovieActivity" android:screenOrientation="portrait" />
         <activity android:name=".SerieAnimeActivity"  android:screenOrientation="portrait"/>
