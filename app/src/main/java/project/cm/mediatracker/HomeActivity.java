@@ -86,9 +86,9 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         btMovies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MovieActivity.class);
-                intent.putExtra(USERNAME, user);
-                intent.putExtra(MEDIA_TYPE, 1);
+                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
+
+                intent.putExtra(MEDIA_TYPE, "movies");
                 startActivity(intent);
             }
         });
@@ -96,9 +96,9 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         btSeries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, SerieAnimeActivity.class);
-                intent.putExtra(USERNAME, user);
-                intent.putExtra(MEDIA_TYPE, 2);
+                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
+
+                intent.putExtra(MEDIA_TYPE, "series");
                 startActivity(intent);
             }
         });
@@ -106,9 +106,9 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         btAnimes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, SerieAnimeActivity.class);
-                intent.putExtra(USERNAME, user);
-                intent.putExtra(MEDIA_TYPE, 3);
+                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
+
+                intent.putExtra(MEDIA_TYPE, "animes");
                 startActivity(intent);
             }
         });
