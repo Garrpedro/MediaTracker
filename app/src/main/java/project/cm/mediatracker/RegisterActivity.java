@@ -47,9 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 register();
-                userProfile();
-                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                startActivity(intent);
+
             }
         });
 
@@ -70,7 +68,23 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(text_register_nome.getText().toString())
+                                    .build();
+
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                                            startActivity(intent);
+                                            if (task.isSuccessful()) {
+                                                Log.d(TAG, "User profile updated.");
+                                            }
+                                        }
+                                    });
                             //updateUI(user);
 
                         } else {
@@ -87,20 +101,5 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public void userProfile(){
-        FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null){
-            UserProfileChangeRequest profileUpadets  = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(text_register_nome.getText().toString().trim()).build();
 
-            user.updateProfile(profileUpadets).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-                        Log.d("test", "profile update");
-                    }
-                }
-            });
-        }
-    }
 }

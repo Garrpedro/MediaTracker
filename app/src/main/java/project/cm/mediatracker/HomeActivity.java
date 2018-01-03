@@ -39,7 +39,6 @@ public class HomeActivity extends Activity implements AppCompatCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         mAuth = FirebaseAuth.getInstance();
 
         //check if user is logged
