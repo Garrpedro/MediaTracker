@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -45,6 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 register();
+                userProfile();
+                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -65,10 +70,9 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            //FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
-                            Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                            startActivity(intent);
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -83,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    /*private void userProfile(){
+    public void userProfile(){
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
             UserProfileChangeRequest profileUpadets  = new UserProfileChangeRequest.Builder()
@@ -98,5 +102,5 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
-    }*/
+    }
 }

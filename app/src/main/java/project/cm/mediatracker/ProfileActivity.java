@@ -17,6 +17,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView username;
     Button signout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +35,18 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        FirebaseUser user = mAuth.getCurrentUser();
 
-        if(user != null){
-            username.setText(user.getDisplayName());
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+
+            username.setText(name);
+
+            String uid = user.getUid();
         }
+
+
 
 
         signout.setOnClickListener(new View.OnClickListener() {
