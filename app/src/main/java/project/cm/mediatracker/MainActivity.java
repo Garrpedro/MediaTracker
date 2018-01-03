@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
-        //getSupportActionBar().hide();
+
 
         //Mudança automática de actividade
         new Handler().postDelayed(new Runnable() {

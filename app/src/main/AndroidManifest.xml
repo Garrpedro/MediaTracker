@@ -14,24 +14,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".ListMediaActivity" />
-        <activity android:name=".SearchMediaActivity" />
-        <activity android:name=".PerfilActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".MovieActivity" />
-        <activity android:name=".SerieAnimeActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RegisterActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ForgotPasswordActivity" android:screenOrientation="portrait" />
+        <activity android:name=".HomeActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MenuActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".ListMediaActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".SearchMediaActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".PerfilActivity" android:screenOrientation="portrait" />
+        <activity android:name=".SettingsActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".MovieActivity" android:screenOrientation="portrait" />
+        <activity android:name=".SerieAnimeActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

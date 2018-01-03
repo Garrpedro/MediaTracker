@@ -68,7 +68,7 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         delegate.getSupportActionBar().setTitle(null);
 
         title = findViewById(R.id.toolbar_title);
-        title.setText(user);
+        title.setText(USERNAME);
 
         perfilToolbar = findViewById(R.id.tool_bar_user_button);
         perfilToolbar.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +115,7 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         MobileAds.initialize(this, "ca-app-pub-1606976219790764~6546896597");
 
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("37BAB9ED353B0FE2F570729017F8CBD7").build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("9762F6AFBC7457A6DC4F89930C7555F1").build();
         mAdView.loadAd(adRequest);
 
     }
