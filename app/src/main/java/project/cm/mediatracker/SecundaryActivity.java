@@ -1,18 +1,17 @@
 package project.cm.mediatracker;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -20,16 +19,14 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends Activity implements AppCompatCallback {
+public class SecundaryActivity extends FragmentActivity implements AppCompatCallback {
 
     public static final String USERNAME = "username";
     public static final String MEDIA_TYPE = "tipo_media";
-    ImageButton perfilToolbar;
+
     TextView title;
     String user;
-    Button btMovies;
-    Button btSeries;
-    Button btAnimes;
+
     private AppCompatDelegate delegate;
     private AdView mAdView;
 
@@ -44,7 +41,7 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         //check if user is logged
         if(mAuth.getCurrentUser() == null){
             finish();
-            Intent intent=new Intent(HomeActivity.this,LoginActivity.class);
+            Intent intent = new Intent(SecundaryActivity.this, LoginActivity.class);
             startActivity(intent);
         }
 
@@ -59,7 +56,7 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         delegate.onCreate(savedInstanceState);
 
         //we use the delegate to inflate the layout
-        delegate.setContentView(R.layout.activity_home);
+        delegate.setContentView(R.layout.activity_secundary);
 
         //Finally, let's add the Toolbar
         Toolbar toolbar = findViewById(R.id.tool_bar);
@@ -69,48 +66,14 @@ public class HomeActivity extends Activity implements AppCompatCallback {
         title = findViewById(R.id.toolbar_title);
         title.setText(USERNAME);
 
-        perfilToolbar = findViewById(R.id.tool_bar_user_button);
-        perfilToolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                intent.putExtra(USERNAME, user);
-                startActivity(intent);
-            }
-        });
-        Button btMovies = findViewById(R.id.btMovies);
-        Button btSeries = findViewById(R.id.btSeries);
-        Button btAnimes = findViewById(R.id.btAnimes);
 
-        btMovies.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
+        HomeFragment homeFragment = new HomeFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.container, homeFragment)
+                .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
 
-                intent.putExtra(MEDIA_TYPE, "movies");
-                startActivity(intent);
-            }
-        });
 
-        btSeries.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
-
-                intent.putExtra(MEDIA_TYPE, "series");
-                startActivity(intent);
-            }
-        });
-
-        btAnimes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
-
-                intent.putExtra(MEDIA_TYPE, "animes");
-                startActivity(intent);
-            }
-        });
         MobileAds.initialize(this, "ca-app-pub-1606976219790764~6546896597");
 
         mAdView = findViewById(R.id.adView);
@@ -136,12 +99,12 @@ public class HomeActivity extends Activity implements AppCompatCallback {
 
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(SecundaryActivity.this, SettingsActivity.class);
                 startActivity(intent);
 
                 break;
             case R.id.action_user:
-                intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                intent = new Intent(SecundaryActivity.this, ProfileActivity.class);
                 intent.putExtra(USERNAME, user);
                 startActivity(intent);
                 break;
