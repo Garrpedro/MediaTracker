@@ -25,7 +25,7 @@
         <activity android:name=".RegisterActivity" android:screenOrientation="portrait" />
         <activity android:name=".ForgotPasswordActivity" android:screenOrientation="portrait" />
         <activity
-            android:name=".SecundaryActivity"
+            android:name=".SecondaryActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ListMediaActivity"  android:screenOrientation="portrait"/>
         <activity android:name=".SearchMediaActivity"  android:screenOrientation="portrait"/>

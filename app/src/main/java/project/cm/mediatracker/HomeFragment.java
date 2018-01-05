@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import static project.cm.mediatracker.SecundaryActivity.MEDIA_TYPE;
 
 
 /**
@@ -38,7 +37,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 MenuFragment menuFragment = new MenuFragment();
                 Bundle arguments = new Bundle();
-                arguments.putString(MEDIA_TYPE, "movies");
+                arguments.putString("media_type", "movies");
                 menuFragment.setArguments(arguments);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.container, menuFragment)
@@ -54,7 +53,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 MenuFragment menuFragment = new MenuFragment();
                 Bundle arguments = new Bundle();
-                arguments.putString(MEDIA_TYPE, "series");
+                arguments.putString("media_type", "series");
                 menuFragment.setArguments(arguments);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.container, menuFragment)
@@ -69,7 +68,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 MenuFragment menuFragment = new MenuFragment();
                 Bundle arguments = new Bundle();
-                arguments.putString(MEDIA_TYPE, "animes");
+                arguments.putString("media_type", "animes");
                 menuFragment.setArguments(arguments);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.container, menuFragment)

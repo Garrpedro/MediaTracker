@@ -19,7 +19,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SecundaryActivity extends FragmentActivity implements AppCompatCallback {
+public class SecondaryActivity extends FragmentActivity implements AppCompatCallback {
 
     public static final String USERNAME = "username";
     public static final String MEDIA_TYPE = "tipo_media";
@@ -41,7 +41,7 @@ public class SecundaryActivity extends FragmentActivity implements AppCompatCall
         //check if user is logged
         if(mAuth.getCurrentUser() == null){
             finish();
-            Intent intent = new Intent(SecundaryActivity.this, LoginActivity.class);
+            Intent intent = new Intent(SecondaryActivity.this, LoginActivity.class);
             startActivity(intent);
         }
 
@@ -56,7 +56,7 @@ public class SecundaryActivity extends FragmentActivity implements AppCompatCall
         delegate.onCreate(savedInstanceState);
 
         //we use the delegate to inflate the layout
-        delegate.setContentView(R.layout.activity_secundary);
+        delegate.setContentView(R.layout.activity_secondary);
 
         //Finally, let's add the Toolbar
         Toolbar toolbar = findViewById(R.id.tool_bar);
@@ -99,12 +99,12 @@ public class SecundaryActivity extends FragmentActivity implements AppCompatCall
 
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent intent = new Intent(SecundaryActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(SecondaryActivity.this, SettingsActivity.class);
                 startActivity(intent);
 
                 break;
             case R.id.action_user:
-                intent = new Intent(SecundaryActivity.this, ProfileActivity.class);
+                intent = new Intent(SecondaryActivity.this, ProfileActivity.class);
                 intent.putExtra(USERNAME, user);
                 startActivity(intent);
                 break;

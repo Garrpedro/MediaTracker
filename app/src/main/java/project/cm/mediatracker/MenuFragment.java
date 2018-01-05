@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import static project.cm.mediatracker.SecundaryActivity.MEDIA_TYPE;
 
 
 /**
@@ -18,7 +17,7 @@ import static project.cm.mediatracker.SecundaryActivity.MEDIA_TYPE;
 public class MenuFragment extends Fragment {
 
 
-    String mediaType = null;
+    String mediaType;
 
 
     public MenuFragment() {
@@ -38,7 +37,7 @@ public class MenuFragment extends Fragment {
         Button btWatched = view.findViewById(R.id.btWatched);
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            String mediaType = bundle.getString(MEDIA_TYPE, null);
+            mediaType = getArguments().getString("media_type");
         }
 
 
@@ -46,7 +45,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SearchMediaActivity.class);
-                intent.putExtra(MEDIA_TYPE, mediaType);
+                intent.putExtra("media_type", mediaType);
                 startActivity(intent);
             }
         });
@@ -56,7 +55,7 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ListMediaActivity.class);
 
-                intent.putExtra(MEDIA_TYPE, mediaType);
+                intent.putExtra("media_type", mediaType);
                 intent.putExtra("option", "wantWatch");
                 startActivity(intent);
             }
@@ -65,7 +64,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ListMediaActivity.class);
-                intent.putExtra(MEDIA_TYPE, mediaType);
+                intent.putExtra("media_type", mediaType);
                 intent.putExtra("option", "watching");
                 startActivity(intent);
             }
@@ -74,7 +73,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ListMediaActivity.class);
-                intent.putExtra(MEDIA_TYPE, mediaType);
+                intent.putExtra("media_type", mediaType);
                 intent.putExtra("option", "givepUP");
                 startActivity(intent);
             }
@@ -83,7 +82,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ListMediaActivity.class);
-                intent.putExtra(MEDIA_TYPE, mediaType);
+                intent.putExtra("media_type", mediaType);
                 intent.putExtra("option", "watched");
                 ;
                 startActivity(intent);
