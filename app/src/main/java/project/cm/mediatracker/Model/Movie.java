@@ -11,7 +11,7 @@ public class Movie extends Content {
     private String actors;
     private Integer rating;
 
-    public Movie(Integer codContent, String title, Integer year, Integer runtime, String genre, String writer, String plot, String poster, String releasedDate, String director, String actors, Integer rating) {
+    public Movie(String codContent, String title, String year, Integer runtime, String genre, String writer, String plot, String poster, String releasedDate, String director, String actors, Integer rating) {
         super(codContent, title, year, runtime, genre, writer, plot, poster);
         this.releasedDate = releasedDate;
         this.director = director;

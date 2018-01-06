@@ -4,18 +4,25 @@ package project.cm.mediatracker.Model;
  * Created by pedrog on 26-12-2017.
  */
 
-public abstract class Content {
+public class Content {
 
-    private Integer codContent;
+    private String codContent;
     private String title;
-    private Integer year;
+    private String year;
     private Integer runtime;
     private String genre;
     private String writer;
     private String plot;
     private String poster;
 
-    public Content(Integer codContent, String title, Integer year, Integer runtime, String genre, String writer, String plot, String poster) {
+    public Content(String codContent, String title, String year, String poster) {
+        this.codContent = codContent;
+        this.title = title;
+        this.year = year;
+        this.poster = poster;
+    }
+
+    public Content(String codContent, String title, String year, Integer runtime, String genre, String writer, String plot, String poster) {
         this.codContent = codContent;
         this.title = title;
         this.year = year;
@@ -26,11 +33,11 @@ public abstract class Content {
         this.poster = poster;
     }
 
-    public Integer getCodContent() {
+    public String getCodContent() {
         return codContent;
     }
 
-    public void setCodContent(Integer codContent) {
+    public void setCodContent(String codContent) {
         this.codContent = codContent;
     }
 
@@ -42,11 +49,11 @@ public abstract class Content {
         this.title = title;
     }
 
-    public Integer getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(String year) {
         this.year = year;
     }
 

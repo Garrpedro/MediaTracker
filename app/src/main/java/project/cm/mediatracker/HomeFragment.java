@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 MenuFragment menuFragment = new MenuFragment();
                 Bundle arguments = new Bundle();
-                arguments.putString("media_type", "movies");
+                arguments.putString("media_type", "movie");
                 menuFragment.setArguments(arguments);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.container, menuFragment)
@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 MenuFragment menuFragment = new MenuFragment();
                 Bundle arguments = new Bundle();
-                arguments.putString("media_type", "animes");
+                arguments.putString("media_type", "series");
                 menuFragment.setArguments(arguments);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.container, menuFragment)
