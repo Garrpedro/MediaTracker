@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
+import android.widget.RelativeLayout;
 
 
 /**
@@ -28,9 +28,18 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
         Button btMovies = view.findViewById(R.id.btMovies);
         Button btSeries = view.findViewById(R.id.btSeries);
         Button btAnimes = view.findViewById(R.id.btAnimes);
+
+
+        int width = getResources().getDisplayMetrics().widthPixels / 3;
+        int hei = getResources().getDisplayMetrics().heightPixels / 3;
+
+        btMovies.setLayoutParams(new RelativeLayout.LayoutParams(width, hei - 56));
+        btSeries.setLayoutParams(new RelativeLayout.LayoutParams(width, hei));
+        btAnimes.setLayoutParams(new RelativeLayout.LayoutParams(width, hei));
 
         btMovies.setOnClickListener(new View.OnClickListener() {
             @Override

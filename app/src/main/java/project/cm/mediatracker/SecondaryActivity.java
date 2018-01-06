@@ -10,13 +10,8 @@ import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SecondaryActivity extends FragmentActivity implements AppCompatCallback {
@@ -26,9 +21,7 @@ public class SecondaryActivity extends FragmentActivity implements AppCompatCall
 
     TextView title;
     String user;
-
     private AppCompatDelegate delegate;
-    private AdView mAdView;
 
     private FirebaseAuth mAuth;
 
@@ -45,11 +38,7 @@ public class SecondaryActivity extends FragmentActivity implements AppCompatCall
             startActivity(intent);
         }
 
-
-
-        user = getIntent().getStringExtra(LoginActivity.USERNAME);
-
-        //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
+//let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
         delegate = AppCompatDelegate.create(this, this);
 
         //we need to call the onCreate() of the AppCompatDelegate
@@ -59,12 +48,11 @@ public class SecondaryActivity extends FragmentActivity implements AppCompatCall
         delegate.setContentView(R.layout.activity_secondary);
 
         //Finally, let's add the Toolbar
-        Toolbar toolbar = findViewById(R.id.tool_bar);
+        Toolbar toolbar = findViewById(R.id.tool_bar_home);
         delegate.setSupportActionBar(toolbar);
         delegate.getSupportActionBar().setTitle(null);
 
-        title = findViewById(R.id.toolbar_title);
-        title.setText(USERNAME);
+        user = getIntent().getStringExtra(LoginActivity.USERNAME);
 
 
         HomeFragment homeFragment = new HomeFragment();
@@ -74,43 +62,9 @@ public class SecondaryActivity extends FragmentActivity implements AppCompatCall
                 .commit();
 
 
-        MobileAds.initialize(this, "ca-app-pub-1606976219790764~6546896597");
-
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("9762F6AFBC7457A6DC4F89930C7555F1").build();
-        mAdView.loadAd(adRequest);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
-
-    @Override
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                Intent intent = new Intent(SecondaryActivity.this, SettingsActivity.class);
-                startActivity(intent);
-
-                break;
-            case R.id.action_user:
-                intent = new Intent(SecondaryActivity.this, ProfileActivity.class);
+ /* intent = new Intent(SecondaryActivity.this, ProfileActivity.class);
                 intent.putExtra(USERNAME, user);
-                startActivity(intent);
-                break;
-
-        }
-        return true;
+                startActivity(intent);*/
     }
 
 
