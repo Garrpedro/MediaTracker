@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +42,8 @@ public class SearchMediaActivity extends AppCompatActivity {
 
     public static final String MEDIA_CONTENT_IMDBID = "media_content_imdbid";
 
+    private AppCompatDelegate delegate;
+
     //the URL having the json data
     String JSON_URL = "http://www.omdbapi.com/?apikey=675629b3&type=movie&s=";
 
@@ -54,6 +58,8 @@ public class SearchMediaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_media);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(myToolbar);
 
         //initializing listview and mediaContent list
         listView = (ListView) findViewById(R.id.listViewMovies);
@@ -90,7 +96,6 @@ public class SearchMediaActivity extends AppCompatActivity {
                                 //getting the json object of the particular index inside the array
                                 JSONObject mediaContentObject = mediaContentArray.getJSONObject(i);
 
-                                if (mediaContentObject.getString("Type").equals("movie")) {
                                     //creating a hero object and giving them the values from json object
                                             Content mediaContent = new Content(mediaContentObject.getString("imdbID"),
                                             mediaContentObject.getString("Title"),
@@ -100,7 +105,6 @@ public class SearchMediaActivity extends AppCompatActivity {
                                     //adding the hero to mediaContentList
                                     mediaContentList.add(mediaContent);
                                 }
-                            }
 
                             //adding the adapter to listview
                             listView.setAdapter(mediaContentAdapter);
@@ -198,7 +202,7 @@ public class SearchMediaActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                JSON_URL = "http://www.omdbapi.com/?apikey=675629b3&type=movie&s=";
+                JSON_URL = "http://www.omdbapi.com/?apikey=675629b3&type=" + getIntent().getStringExtra("media_type") + "&s=";
 
                 String search = sv.getQuery().toString();
                 search = search.replace(" ", "+");
