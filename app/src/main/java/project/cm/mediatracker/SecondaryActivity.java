@@ -10,16 +10,14 @@ import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SecondaryActivity extends FragmentActivity implements AppCompatCallback {
 
-    public static final String USERNAME = "username";
-    public static final String MEDIA_TYPE = "tipo_media";
-
-    TextView title;
+    ImageButton logout;
     String user;
     private AppCompatDelegate delegate;
 
@@ -52,7 +50,23 @@ public class SecondaryActivity extends FragmentActivity implements AppCompatCall
         delegate.setSupportActionBar(toolbar);
         delegate.getSupportActionBar().setTitle(null);
 
+
         user = getIntent().getStringExtra(LoginActivity.USERNAME);
+
+        logout = findViewById(R.id.tool_bar_signout_button);
+
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                finish();
+                Intent intent = new Intent(SecondaryActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
         HomeFragment homeFragment = new HomeFragment();
@@ -61,10 +75,6 @@ public class SecondaryActivity extends FragmentActivity implements AppCompatCall
                 .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
 
-
- /* intent = new Intent(SecondaryActivity.this, ProfileActivity.class);
-                intent.putExtra(USERNAME, user);
-                startActivity(intent);*/
     }
 
 

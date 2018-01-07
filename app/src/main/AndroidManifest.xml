@@ -40,12 +40,6 @@
             android:name=".SearchMediaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProfileActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".SettingsActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".MediaContentActivity"></activity>
