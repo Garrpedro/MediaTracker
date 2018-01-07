@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         text_register_nome = findViewById(R.id.text_register_nome);
         text_register_email = findViewById(R.id.text_register_email);
         text_register_pass = findViewById(R.id.text_register_pass);
-        text_register_rpt_pass = findViewById(R.id.text_register_pass);
+        text_register_rpt_pass = findViewById(R.id.text_register_rpt_pass);
         btn_register = findViewById(R.id.btn_register);
 
 
@@ -55,49 +55,72 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     void register(){
-        if (text_register_pass.getText().toString()
-                .compareTo( text_register_rpt_pass.getText().toString())!=0){
-            Toast.makeText(this,"As passwords não coincidem!",
-                    Toast.LENGTH_SHORT).show();
+
+        String nome = text_register_nome.getText().toString();
+        String email = text_register_email.getText().toString();
+        String password = text_register_pass.getText().toString();
+        String password_rpt = text_register_rpt_pass.getText().toString();
+
+        if(nome.isEmpty()){
+            text_register_nome.setError("Insira um nome");
+            text_register_nome.requestFocus();
             return;
         }
-        mAuth.createUserWithEmailAndPassword(text_register_email.getText().toString(), text_register_pass.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(email.isEmpty()){
+            text_register_email.setError("Insira um email");
+            text_register_email.requestFocus();
+            return;
+        }
 
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(text_register_nome.getText().toString())
-                                    .build();
+        if(password.isEmpty()){
+            text_register_pass.setError("Insira uma password");
+            text_register_pass.requestFocus();
+            return;
+        }
 
-                            user.updateProfile(profileUpdates)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                                            startActivity(intent);
-                                            if (task.isSuccessful()) {
-                                                Log.d(TAG, "User profile updated.");
+        if (password.compareTo(password_rpt) != 0){
+            text_register_rpt_pass.setError("as passwords nao coincidem");
+            text_register_rpt_pass.requestFocus();
+            return;
+        }else {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "createUserWithEmail:success");
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(text_register_nome.getText().toString())
+                                        .build();
+
+                                user.updateProfile(profileUpdates)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                                startActivity(intent);
+                                                if (task.isSuccessful()) {
+                                                    Log.d(TAG, "User profile updated.");
+                                                }
                                             }
-                                        }
-                                    });
-                            //updateUI(user);
+                                        });
+                                //updateUI(user);
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                                //updateUI(null);
+                            }
+
+                            // ...
                         }
-
-                        // ...
-                    }
-                });
+                    });
+        }
 
     }
 

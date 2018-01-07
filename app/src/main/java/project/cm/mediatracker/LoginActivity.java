@@ -82,8 +82,20 @@ public class LoginActivity extends AppCompatActivity {
 
     void login () {
 
-        if (editText_email.getText().toString().equals("") == false && editText_password.getText().toString().equals(" ") == false)
-        {
+        String email = editText_email.getText().toString();
+        String password = editText_password.getText().toString();
+
+        if(email.isEmpty()){
+            editText_email.setError("Insira um email");
+            editText_email.requestFocus();
+            return;
+        }
+
+        if(password.isEmpty()){
+            editText_password.setError("insira uma password");
+            editText_password.requestFocus();
+            return;
+        }else {
             mAuth.signInWithEmailAndPassword(editText_email.getText().toString(), editText_password.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -108,8 +120,5 @@ public class LoginActivity extends AppCompatActivity {
                     });
         }
     }
-
-
-
 
 }
