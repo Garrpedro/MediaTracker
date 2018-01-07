@@ -50,7 +50,6 @@ public class SecondaryActivity extends FragmentActivity implements AppCompatCall
         delegate.setSupportActionBar(toolbar);
         delegate.getSupportActionBar().setTitle(null);
 
-
         user = getIntent().getStringExtra(LoginActivity.USERNAME);
 
         logout = findViewById(R.id.tool_bar_signout_button);

@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -24,7 +23,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
@@ -41,35 +39,32 @@ import project.cm.mediatracker.Model.Content;
 public class SearchMediaActivity extends AppCompatActivity {
 
     public static final String MEDIA_CONTENT_IMDBID = "media_content_imdbid";
-
-    private AppCompatDelegate delegate;
-
     //the URL having the json data
     String JSON_URL = "http://www.omdbapi.com/?apikey=675629b3&type=movie&s=";
-
     //listview object
     ListView listView;
-
     //the mediaContent list where we will store all the mediaContent objects after parsing json
     List<Content> mediaContentList = new ArrayList<>();
     MediaContentAdapter mediaContentAdapter;
+    private AppCompatDelegate delegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_media);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar myToolbar = findViewById(R.id.tool_bar);
+        delegate.getSupportActionBar().setTitle(null);
         setSupportActionBar(myToolbar);
 
         //initializing listview and mediaContent list
-        listView = (ListView) findViewById(R.id.listViewMovies);
+        listView = findViewById(R.id.listViewMovies);
         mediaContentAdapter = new MediaContentAdapter();
 
     }
 
     private void loadHeroList() {
         //getting the progressbar
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        final ProgressBar progressBar = findViewById(R.id.progressBar);
 
         //making the progressbar visible
         progressBar.setVisibility(View.VISIBLE);
@@ -127,6 +122,40 @@ public class SearchMediaActivity extends AppCompatActivity {
 
         //adding the string request to request queue
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_search_med, menu);
+
+        MenuItem ourSearchItem = menu.findItem(R.id.app_bar_search);
+
+        final SearchView sv = (SearchView) ourSearchItem.getActionView();
+
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                JSON_URL = "http://www.omdbapi.com/?apikey=675629b3&type=" + getIntent().getStringExtra("media_type") + "&s=";
+
+                String search = sv.getQuery().toString();
+                search = search.replace(" ", "+");
+                JSON_URL += search;
+                mediaContentList = new ArrayList<>();
+                //this method will fetch and parse the data
+                loadHeroList();
+                sv.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+        return true;
     }
 
     class MediaContentAdapter extends BaseAdapter implements View.OnClickListener{
@@ -187,40 +216,6 @@ public class SearchMediaActivity extends AppCompatActivity {
             startActivity(intent);
 
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_search_med, menu);
-
-        MenuItem ourSearchItem = menu.findItem(R.id.app_bar_search);
-
-        final SearchView sv = (SearchView) ourSearchItem.getActionView();
-
-        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                JSON_URL = "http://www.omdbapi.com/?apikey=675629b3&type=" + getIntent().getStringExtra("media_type") + "&s=";
-
-                String search = sv.getQuery().toString();
-                search = search.replace(" ", "+");
-                JSON_URL += search;
-                mediaContentList = new ArrayList<>();
-                //this method will fetch and parse the data
-                loadHeroList();
-                sv.clearFocus();
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });
-
-        return true;
     }
 
 }
