@@ -7,6 +7,7 @@ package project.cm.mediatracker.Model;
 public class Content {
 
     private String codContent;
+
     private String title;
     private String year;
     private Integer runtime;
