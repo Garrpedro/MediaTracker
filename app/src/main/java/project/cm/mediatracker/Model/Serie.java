@@ -12,8 +12,8 @@ public class Serie extends Content {
     private Integer totalSeason;
     private List<Episode> episodes;
 
-    public Serie(String codContent, String title, String year, Integer runtime, String genre, String writer, String plot, String poster, String actors, Integer totalSeason, List<Episode> episodes) {
-        super(codContent, title, year, runtime, genre, writer, plot, poster);
+    public Serie(String codContent, String title, String year, String released, String genre, String writer, String plot, String poster, String actors, Integer totalSeason, List<Episode> episodes) {
+        super(codContent, title, year, released, genre, writer, plot, poster);
         this.actors = actors;
         this.totalSeason = totalSeason;
         this.episodes = episodes;
