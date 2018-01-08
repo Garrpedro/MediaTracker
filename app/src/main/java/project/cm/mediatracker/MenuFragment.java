@@ -30,6 +30,7 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
+
         Button btSearch = view.findViewById(R.id.btSearch);
         Button btWantWatch = view.findViewById(R.id.btWantWatch);
         Button btWatching = view.findViewById(R.id.btWatching);

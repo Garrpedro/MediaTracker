@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.app.AppCompatCallback;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,7 +36,7 @@ import java.util.List;
 
 import project.cm.mediatracker.Model.Content;
 
-public class SearchMediaActivity extends AppCompatActivity {
+public class SearchMediaActivity extends AppCompatActivity implements AppCompatCallback {
 
     public static final String MEDIA_CONTENT_IMDBID = "media_content_imdbid";
     //the URL having the json data
@@ -46,15 +46,16 @@ public class SearchMediaActivity extends AppCompatActivity {
     //the mediaContent list where we will store all the mediaContent objects after parsing json
     List<Content> mediaContentList = new ArrayList<>();
     MediaContentAdapter mediaContentAdapter;
-    private AppCompatDelegate delegate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_media);
+
         Toolbar myToolbar = findViewById(R.id.tool_bar);
-        myToolbar.setTitle(null);
         setSupportActionBar(myToolbar);
+
 
         //initializing listview and mediaContent list
         listView = findViewById(R.id.listViewMovies);
