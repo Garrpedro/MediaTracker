@@ -1,12 +1,11 @@
 package project.cm.mediatracker;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -34,6 +33,7 @@ public class MediaContentActivity extends AppCompatActivity {
     TextView txtViewTitleSearch, txtViewYearSearch, txtViewGenreSearch, txtViewReleasedSearch, txtViewPlotSearch;
     ImageView imgViewPosterSearch;
     Button btnWatched, btnWantWatch, btnGivenUp, btnWatching;
+
 
     DatabaseReference databaseReference;
 
