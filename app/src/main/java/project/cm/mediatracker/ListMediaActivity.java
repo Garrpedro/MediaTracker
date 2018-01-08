@@ -1,7 +1,6 @@
 package project.cm.mediatracker;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -12,11 +11,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,13 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import project.cm.mediatracker.Model.Content;
 import project.cm.mediatracker.Model.MediaContent;
 
 public class ListMediaActivity extends AppCompatActivity {
@@ -38,11 +28,15 @@ public class ListMediaActivity extends AppCompatActivity {
     List<MediaContent> mediaContentList = new ArrayList<>();
     ListView listView;
     ListMediaAdapter listMediaAdapter;
+    String list, type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_media);
+
+        type = getIntent().getStringExtra("media_type");
+        list = getIntent().getStringExtra("option");
 
         listView = findViewById(R.id.listViewListMedia);
         listMediaAdapter = new ListMediaAdapter();
@@ -65,7 +59,8 @@ public class ListMediaActivity extends AppCompatActivity {
                     //Log.d("test", d.toString());
                     for (DataSnapshot d1 : d.getChildren()) {
                         MediaContent mediaContent = d1.getValue(MediaContent.class);
-                        mediaContentList.add(mediaContent);
+                        if (mediaContent.getList().equalsIgnoreCase(list))
+                            mediaContentList.add(mediaContent);
                     }
                 }
 

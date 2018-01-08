@@ -57,7 +57,7 @@ public class MenuFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ListMediaActivity.class);
 
                 intent.putExtra("media_type", mediaType);
-                intent.putExtra("option", "wantWatch");
+                intent.putExtra("option", "wantwatch");
                 startActivity(intent);
             }
         });
@@ -75,7 +75,7 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ListMediaActivity.class);
                 intent.putExtra("media_type", mediaType);
-                intent.putExtra("option", "givepUP");
+                intent.putExtra("option", "givenup");
                 startActivity(intent);
             }
         });
@@ -85,7 +85,6 @@ public class MenuFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ListMediaActivity.class);
                 intent.putExtra("media_type", mediaType);
                 intent.putExtra("option", "watched");
-                ;
                 startActivity(intent);
             }
         });
