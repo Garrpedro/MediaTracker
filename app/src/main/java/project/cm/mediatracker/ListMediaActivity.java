@@ -1,7 +1,6 @@
 package project.cm.mediatracker;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -36,9 +35,9 @@ import project.cm.mediatracker.Model.MediaContent;
 public class ListMediaActivity extends AppCompatActivity {
 
     ListView listView;
-    List<MediaContent> mediaContentList = new ArrayList<>();
+    MediaContent mediaContent = new MediaContent();
     ListMediaAdapter listMediaAdapter;
-    Content content;
+    List<Content> content = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +45,8 @@ public class ListMediaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_media);
 
         listView = findViewById(R.id.listViewListMedia);
-
         listMediaAdapter  = new ListMediaAdapter();
+        listView.setAdapter(listMediaAdapter);
 
     }
 
@@ -62,19 +61,15 @@ public class ListMediaActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                mediaContentList.clear();
+                content.clear();
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
-                    //Log.d("test", d.toString());
                     for (DataSnapshot d1 : d.getChildren()) {
                         MediaContent mediaContent = d1.getValue(MediaContent.class);
-                        mediaContentList.add(mediaContent);
+                        SearchMediaContent(mediaContent.getImdbId());
                     }
                 }
 
-                for (MediaContent mediaContent : mediaContentList) {
-                    SearchMediaContent(mediaContent.getImdbId());
-                    listMediaAdapter.notifyDataSetChanged();
-                }
+                listMediaAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -83,52 +78,6 @@ public class ListMediaActivity extends AppCompatActivity {
             }
 
         });
-    }
-
-    class ListMediaAdapter extends BaseAdapter{
-
-        LayoutInflater layoutInflater;
-
-        public ListMediaAdapter(){
-            layoutInflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        @Override
-        public int getCount() {
-            return mediaContentList.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return mediaContentList.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            if(view==null){
-                view=layoutInflater.inflate(R.layout.list_media_row,null);
-            }
-
-            TextView textViewName = view.findViewById(R.id.textViewTitle);
-            TextView textViewYear = view.findViewById(R.id.textViewYear);
-            ImageView imgPoster = view.findViewById(R.id.imgPoster);
-
-            textViewName.setText(content.getTitle());
-            textViewYear.setText(content.getYear());
-
-            if (!content.getPoster().equals("N/A"))
-                Picasso.with(getApplicationContext()).load(content.getPoster()).into(imgPoster);
-            else
-                imgPoster.setImageResource(R.drawable.missing_image);
-
-            return view;
-        }
-
     }
 
     public void SearchMediaContent(String imdbId)
@@ -149,7 +98,7 @@ public class ListMediaActivity extends AppCompatActivity {
                                 String year = response.getString("Year");
                                 String poster = response.getString("Poster");
 
-                                content = new Content(title, year, poster);
+                                content.add(new Content(title, year, poster));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -169,6 +118,55 @@ public class ListMediaActivity extends AppCompatActivity {
         }
         finally
         {
+        }
+    }
+
+    class ListMediaAdapter extends BaseAdapter {
+
+        LayoutInflater layoutInflater;
+
+        public ListMediaAdapter() {
+            layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public int getCount() {
+            return content.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return content.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            if (view == null) {
+                view = layoutInflater.inflate(R.layout.list_media_row, null);
+            }
+
+            TextView textViewName = view.findViewById(R.id.textViewTitle);
+            TextView textViewYear = view.findViewById(R.id.textViewYear);
+            ImageView imgPoster = view.findViewById(R.id.imgPoster);
+
+            textViewName.setText(content.get(i).getTitle());
+            textViewYear.setText(content.get(i).getYear());
+
+            if (!content.get(i).getPoster().equals("N/A"))
+                Picasso.with(getApplicationContext()).load(content.get(i).getPoster()).into(imgPoster);
+            else
+                imgPoster.setImageResource(R.drawable.missing_image);
+
+            view.setTag(new Integer(i));
+            view.setClickable(true);
+
+            return view;
+
         }
     }
 

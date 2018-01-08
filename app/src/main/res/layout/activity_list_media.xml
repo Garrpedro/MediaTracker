@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="project.cm.mediatracker.ListMediaActivity">
 
     <ProgressBar
@@ -15,20 +15,19 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/listViewMovies"
-        app:layout_constraintEnd_toEndOf="@+id/listViewMovies"
-        app:layout_constraintStart_toStartOf="@+id/listViewMovies"
-        app:layout_constraintTop_toTopOf="@+id/listViewMovies"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/listViewListMedia"
+        app:layout_constraintEnd_toEndOf="@+id/listViewListMedia"
+        app:layout_constraintStart_toStartOf="@+id/listViewListMedia"
+        app:layout_constraintTop_toTopOf="@+id/listViewListMedia" />
 
     <ListView
         android:id="@+id/listViewListMedia"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tool_bar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
