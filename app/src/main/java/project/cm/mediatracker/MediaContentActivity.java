@@ -24,9 +24,12 @@ import org.json.JSONObject;
 
 import java.util.UUID;
 
+import project.cm.mediatracker.Model.Content;
 import project.cm.mediatracker.Model.MediaContent;
 
 public class MediaContentActivity extends AppCompatActivity {
+
+    Content content;
 
     TextView txtViewTitleSearch, txtViewYearSearch, txtViewGenreSearch, txtViewReleasedSearch, txtViewPlotSearch;
     ImageView imgViewPosterSearch;
@@ -61,7 +64,7 @@ public class MediaContentActivity extends AppCompatActivity {
         btnWatching.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaContent md = new MediaContent(getIntent().getStringExtra("media_content_imdbid"), "movie", "watching");
+                MediaContent md = new MediaContent(content.getTitle(), content.getYear(),content.getPoster() , "movie", "watching");
 
                 databaseReference.child(user.getUid()).child(id).setValue(md);
             }
@@ -70,7 +73,8 @@ public class MediaContentActivity extends AppCompatActivity {
         btnWantWatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaContent md = new MediaContent(getIntent().getStringExtra("media_content_imdbid"), "movie", "wantwatch");
+                MediaContent md = new MediaContent(content.getTitle(), content.getYear(),content.getPoster() , "movie", "wantwatch");
+
 
                 databaseReference.child(user.getUid()).child(id).setValue(md);
             }
@@ -79,7 +83,7 @@ public class MediaContentActivity extends AppCompatActivity {
         btnWatched.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaContent md = new MediaContent(getIntent().getStringExtra("media_content_imdbid"), "movie", "watched");
+                MediaContent md = new MediaContent(content.getTitle(), content.getYear(),content.getPoster() , "movie", "watched");
 
                 databaseReference.child(user.getUid()).child(id).setValue(md);
 
@@ -89,12 +93,14 @@ public class MediaContentActivity extends AppCompatActivity {
         btnGivenUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaContent md = new MediaContent(getIntent().getStringExtra("media_content_imdbid"), "movie", "givenup");
+                MediaContent md = new MediaContent(content.getTitle(), content.getYear(),content.getPoster() , "movie", "givenup");
 
                 databaseReference.child(user.getUid()).child(id).setValue(md);
             }
         });
+
         SearchMediaContent();
+
     }
 
     public  void  SearchMediaContent()
@@ -118,16 +124,9 @@ public class MediaContentActivity extends AppCompatActivity {
                                 String plot = response.getString("Plot");
                                 String poster = response.getString("Poster");
 
-                                txtViewTitleSearch.setText(title);
-                                txtViewYearSearch.setText(year);
-                                txtViewGenreSearch.setText(genre);
-                                txtViewReleasedSearch.setText(released);
-                                txtViewPlotSearch.setText(plot);
+                                content = new Content(title, year, genre, released, plot, poster);
 
-                                if (!poster.equals("N/A"))
-                                    Picasso.with(getApplicationContext()).load(poster).into(imgViewPosterSearch);
-                                else
-                                    imgViewPosterSearch.setImageResource(R.drawable.missing_image);
+                                displayAll();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -148,6 +147,21 @@ public class MediaContentActivity extends AppCompatActivity {
         finally
         {
         }
+    }
+
+    public void displayAll()
+    {
+        txtViewTitleSearch.setText(content.getTitle());
+        txtViewYearSearch.setText(content.getYear());
+        txtViewGenreSearch.setText(content.getGenre());
+        txtViewReleasedSearch.setText(content.getReleased());
+        txtViewPlotSearch.setText(content.getPlot());
+
+        if (!content.getPoster().equals("N/A"))
+            Picasso.with(getApplicationContext()).load(content.getPoster()).into(imgViewPosterSearch);
+        else
+            imgViewPosterSearch.setImageResource(R.drawable.missing_image);
+
     }
 
 }

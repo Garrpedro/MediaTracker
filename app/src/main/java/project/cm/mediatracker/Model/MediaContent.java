@@ -6,26 +6,45 @@ package project.cm.mediatracker.Model;
 
 public class MediaContent {
 
-    private String imdbId;
+    private String title;
+    private String year;
+    private String poster;
     private String type;
     private String list;
 
     public MediaContent() {
-
     }
 
-    public MediaContent(String imdbId, String type, String list) {
-        this.imdbId = imdbId;
+    public MediaContent(String title, String year, String poster, String type, String list) {
+        this.title = title;
+        this.year = year;
+        this.poster = poster;
         this.type = type;
         this.list = list;
     }
 
-    public String getImdbId() {
-        return imdbId;
+    public String getTitle() {
+        return title;
     }
 
-    public void setImdbId(String imdbId) {
-        this.imdbId = imdbId;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     public String getType() {

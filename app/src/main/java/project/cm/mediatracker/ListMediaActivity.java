@@ -1,6 +1,7 @@
 package project.cm.mediatracker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -34,10 +35,9 @@ import project.cm.mediatracker.Model.MediaContent;
 
 public class ListMediaActivity extends AppCompatActivity {
 
+    List<MediaContent> mediaContentList = new ArrayList<>();
     ListView listView;
-    MediaContent mediaContent = new MediaContent();
     ListMediaAdapter listMediaAdapter;
-    List<Content> content = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,7 @@ public class ListMediaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_media);
 
         listView = findViewById(R.id.listViewListMedia);
-        listMediaAdapter  = new ListMediaAdapter();
-        listView.setAdapter(listMediaAdapter);
+        listMediaAdapter = new ListMediaAdapter();
 
     }
 
@@ -61,15 +60,16 @@ public class ListMediaActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                content.clear();
+                mediaContentList.clear();
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
+                    //Log.d("test", d.toString());
                     for (DataSnapshot d1 : d.getChildren()) {
                         MediaContent mediaContent = d1.getValue(MediaContent.class);
-                        SearchMediaContent(mediaContent.getImdbId());
+                        mediaContentList.add(mediaContent);
                     }
                 }
 
-                listMediaAdapter.notifyDataSetChanged();
+                listView.setAdapter(listMediaAdapter);
             }
 
             @Override
@@ -78,47 +78,6 @@ public class ListMediaActivity extends AppCompatActivity {
             }
 
         });
-    }
-
-    public void SearchMediaContent(String imdbId)
-    {
-        // Send data
-        try
-        {
-            String url = "http://www.omdbapi.com/?apikey=675629b3&i=" + imdbId;
-
-            JsonObjectRequest jsonRequest = new JsonObjectRequest
-                    (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            // the response is already constructed as a JSONObject!
-                            try {
-                                //response = response.getJSONObject("args");
-                                String title = response.getString("Title");
-                                String year = response.getString("Year");
-                                String poster = response.getString("Poster");
-
-                                content.add(new Content(title, year, poster));
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                        }
-                    });
-            Volley.newRequestQueue(this).add(jsonRequest);
-        }
-        catch(Exception ex)
-        {
-        }
-        finally
-        {
-        }
     }
 
     class ListMediaAdapter extends BaseAdapter {
@@ -131,12 +90,12 @@ public class ListMediaActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return content.size();
+            return mediaContentList.size();
         }
 
         @Override
         public Object getItem(int i) {
-            return content.get(i);
+            return mediaContentList.get(i);
         }
 
         @Override
@@ -154,19 +113,17 @@ public class ListMediaActivity extends AppCompatActivity {
             TextView textViewYear = view.findViewById(R.id.textViewYear);
             ImageView imgPoster = view.findViewById(R.id.imgPoster);
 
-            textViewName.setText(content.get(i).getTitle());
-            textViewYear.setText(content.get(i).getYear());
+            textViewName.setText(mediaContentList.get(i).getTitle());
+            textViewYear.setText(mediaContentList.get(i).getYear());
 
-            if (!content.get(i).getPoster().equals("N/A"))
-                Picasso.with(getApplicationContext()).load(content.get(i).getPoster()).into(imgPoster);
+            if (!mediaContentList.get(i).getPoster().equals("N/A"))
+                Picasso.with(getApplicationContext()).load(mediaContentList.get(i).getPoster()).into(imgPoster);
             else
                 imgPoster.setImageResource(R.drawable.missing_image);
 
             view.setTag(new Integer(i));
-            view.setClickable(true);
 
             return view;
-
         }
     }
 

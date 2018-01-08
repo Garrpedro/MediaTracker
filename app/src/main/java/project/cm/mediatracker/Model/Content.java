@@ -7,18 +7,29 @@ package project.cm.mediatracker.Model;
 public class Content {
 
     private String codContent;
-
     private String title;
     private String year;
-    private Integer runtime;
+    private String released;
     private String genre;
     private String writer;
     private String plot;
     private String poster;
 
+    public Content() {
+    }
+
     public Content(String title, String year, String poster) {
         this.title = title;
         this.year = year;
+        this.poster = poster;
+    }
+
+    public Content(String title, String year, String released, String genre, String plot, String poster) {
+        this.title = title;
+        this.year = year;
+        this.released = released;
+        this.genre = genre;
+        this.plot = plot;
         this.poster = poster;
     }
 
@@ -29,11 +40,13 @@ public class Content {
         this.poster = poster;
     }
 
-    public Content(String codContent, String title, String year, Integer runtime, String genre, String writer, String plot, String poster) {
+
+
+    public Content(String codContent, String title, String year, String released, String genre, String writer, String plot, String poster) {
         this.codContent = codContent;
         this.title = title;
         this.year = year;
-        this.runtime = runtime;
+        this.released = released;
         this.genre = genre;
         this.writer = writer;
         this.plot = plot;
@@ -64,12 +77,12 @@ public class Content {
         this.year = year;
     }
 
-    public Integer getRuntime() {
-        return runtime;
+    public String getReleased() {
+        return released;
     }
 
-    public void setRuntime(Integer runtime) {
-        this.runtime = runtime;
+    public void setReleased(String released) {
+        this.released = released;
     }
 
     public String getGenre() {
@@ -104,17 +117,4 @@ public class Content {
         this.poster = poster;
     }
 
-    @Override
-    public String toString() {
-        return "Content{" +
-                "codContent=" + codContent +
-                ", title='" + title + '\'' +
-                ", year=" + year +
-                ", runtime=" + runtime +
-                ", genre='" + genre + '\'' +
-                ", writer='" + writer + '\'' +
-                ", plot='" + plot + '\'' +
-                ", poster='" + poster + '\'' +
-                '}';
-    }
 }
