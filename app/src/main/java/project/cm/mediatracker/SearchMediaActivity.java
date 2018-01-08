@@ -53,7 +53,7 @@ public class SearchMediaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_media);
         Toolbar myToolbar = findViewById(R.id.tool_bar);
-        delegate.getSupportActionBar().setTitle(null);
+        myToolbar.setTitle(null);
         setSupportActionBar(myToolbar);
 
         //initializing listview and mediaContent list

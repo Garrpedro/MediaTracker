@@ -23,7 +23,7 @@ public class MediaContentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_media);
+        setContentView(R.layout.activity_media_content);
 
         txtViewTitleSearch = findViewById(R.id.txtViewTitleSearch);
         txtViewYearSearch = findViewById(R.id.txtViewYearSearch);
@@ -41,7 +41,7 @@ public class MediaContentActivity extends AppCompatActivity {
         // Send data
         try
         {
-            String url = "http://www.omdbapi.com/?apikey=675629b3&i=";
+            String url = "http://www.omdbapi.com/?apikey=675629b3&i=" + getIntent().getStringExtra("media_content_imdbid");
 
             JsonObjectRequest jsonRequest = new JsonObjectRequest
                     (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
