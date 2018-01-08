@@ -3,6 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="project.cm.mediatracker.ListMediaActivity">
+
+    <ProgressBar
+        android:id="@+id/progressBarListMedia"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/listViewMovies"
+        app:layout_constraintEnd_toEndOf="@+id/listViewMovies"
+        app:layout_constraintStart_toStartOf="@+id/listViewMovies"
+        app:layout_constraintTop_toTopOf="@+id/listViewMovies"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/listViewListMedia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar" />
 
 </android.support.constraint.ConstraintLayout>

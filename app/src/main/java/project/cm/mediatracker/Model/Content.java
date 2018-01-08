@@ -15,6 +15,12 @@ public class Content {
     private String plot;
     private String poster;
 
+    public Content(String title, String year, String poster) {
+        this.title = title;
+        this.year = year;
+        this.poster = poster;
+    }
+
     public Content(String codContent, String title, String year, String poster) {
         this.codContent = codContent;
         this.title = title;

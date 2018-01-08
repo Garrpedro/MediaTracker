@@ -10,6 +10,10 @@ public class MediaContent {
     private String type;
     private String list;
 
+    public MediaContent() {
+
+    }
+
     public MediaContent(String imdbId, String type, String list) {
         this.imdbId = imdbId;
         this.type = type;
@@ -40,12 +44,4 @@ public class MediaContent {
         this.list = list;
     }
 
-    @Override
-    public String toString() {
-        return "MediaContent{" +
-                "imdbId='" + imdbId + '\'' +
-                ", type='" + type + '\'' +
-                ", list='" + list + '\'' +
-                '}';
-    }
 }
