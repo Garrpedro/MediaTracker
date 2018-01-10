@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -67,6 +68,7 @@ public class MediaContentActivity extends AppCompatActivity {
                 MediaContent md = new MediaContent(content.getTitle(), content.getYear(),content.getPoster() , "movie", "watching");
 
                 databaseReference.child(user.getUid()).child(id).setValue(md);
+                Toast.makeText(MediaContentActivity.this, "Added to database", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -77,6 +79,7 @@ public class MediaContentActivity extends AppCompatActivity {
 
 
                 databaseReference.child(user.getUid()).child(id).setValue(md);
+                Toast.makeText(MediaContentActivity.this, "Added to database", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -86,6 +89,7 @@ public class MediaContentActivity extends AppCompatActivity {
                 MediaContent md = new MediaContent(content.getTitle(), content.getYear(),content.getPoster() , "movie", "watched");
 
                 databaseReference.child(user.getUid()).child(id).setValue(md);
+                Toast.makeText(MediaContentActivity.this, "Added to database", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -96,6 +100,7 @@ public class MediaContentActivity extends AppCompatActivity {
                 MediaContent md = new MediaContent(content.getTitle(), content.getYear(),content.getPoster() , "movie", "givenup");
 
                 databaseReference.child(user.getUid()).child(id).setValue(md);
+                Toast.makeText(MediaContentActivity.this, "Added to database", Toast.LENGTH_LONG).show();
             }
         });
 
